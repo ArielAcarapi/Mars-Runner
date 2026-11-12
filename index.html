@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mars Runner | Endless Runner 3D en Marte</title>
-<meta name="description" content="Mars Runner: un astronauta corre por la superficie de Marte esquivando rocas y meteoritos. Juega gratis en tu navegador.">
+<title>Mars Runner | Portal de juegos en Marte</title>
+<meta name="description" content="Portal de juegos de Marte: Mars Runner (endless runner 3D) y Laberinto Marciano (estilo Pac-Man). Juega gratis en tu navegador.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -12,6 +12,12 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+<!-- 0. BANNER DE IDENTIDAD DEL DESARROLLADOR -->
+<div class="dev-banner">
+  Developer
+  <b>NOMBRE DEL DEVELOPER</b>
+</div>
 
 <!-- 1. ENCABEZADO DE NAVEGACION -->
 <header class="nav" id="top">
@@ -25,7 +31,8 @@
       <a href="#personaje">Personaje</a>
       <a href="#mecanicas">Mec&aacute;nicas</a>
       <a href="#datos">Datos</a>
-      <a href="#jugar" class="nav-cta">Jugar ahora</a>
+      <a href="#jugar" class="nav-cta">Juego 1</a>
+      <a href="#laberinto" class="nav-cta nav-cta2">Juego 2</a>
     </nav>
   </div>
 </header>
@@ -39,9 +46,10 @@
       <h1>MARS <em>RUNNER</em></h1>
       <p class="lead">Corre. Salta. Agach&aacute;te. Sobrevive.</p>
       <p>Una tormenta de meteoritos atrapa a un astronauta lejos de su base en Marte. Su ox&iacute;geno se agota: debe correr sin detenerse, esquivar rocas y meteoritos y alcanzar la meta de <strong>1000 puntos</strong> para llegar a la nave de rescate.</p>
-      <div class="cta">
-        <a href="#jugar" class="btn btn-primary">JUGAR AHORA</a>
-        <a href="#historia" class="btn btn-ghost">Descubre la historia</a>
+      <!-- Selector de juegos: lleva a la seccion de cada juego -->
+      <div class="game-pick">
+        <a href="#jugar" class="btn btn-g1">Juego 1 &middot; Mars Runner</a>
+        <a href="#laberinto" class="btn btn-g2">Juego 2 &middot; Laberinto</a>
       </div>
       <ul class="quick">
         <li><b>1000</b><small>Puntos para ganar</small></li>
@@ -178,17 +186,26 @@
   </div>
 </section>
 
-<!-- 7. JUGAR AHORA -->
+<!-- 7. JUEGO 1: MARS RUNNER -->
 <section class="sec" id="jugar">
   <div class="wrap">
-    <p class="kicker">05 &middot; Jugar ahora</p>
-    <h2>Despliega los propulsores</h2>
-    <div class="game-frame">
-      <iframe id="game" title="Mars Runner - Unity WebGL" src="juego/index.html" allowfullscreen allow="fullscreen; autoplay"></iframe>
-    </div>
-    <div class="cta center-cta">
-      <a href="juego/index.html" target="_blank" rel="noopener" class="btn btn-primary">Abrir en pantalla completa</a>
-      <button class="btn btn-ghost" id="fs" type="button">Pantalla completa aqu&iacute;</button>
+    <p class="kicker">05 &middot; Juego 1</p>
+    <h2>Mars Runner: despliega los propulsores</h2>
+    <div class="juego">
+      <div class="game-bar">
+        <span class="game-name">JUEGO 1 &middot; MARS RUNNER</span>
+        <div class="game-btns">
+          <button class="btn btn-ghost btn-fs" type="button">Pantalla completa</button>
+          <button class="btn btn-primary btn-start" type="button">&#9654; START</button>
+        </div>
+      </div>
+      <div class="game-frame">
+        <iframe title="Mars Runner - Unity WebGL" data-src="juego/index.html" allowfullscreen allow="fullscreen; autoplay"></iframe>
+        <div class="game-wait">
+          <b>&#9654;</b>
+          <p>Pulsa <strong>START</strong> para comenzar.<br>El juego se ejecuta aqu&iacute;, en esta misma p&aacute;gina.</p>
+        </div>
+      </div>
     </div>
     <div class="two req">
       <article class="card">
@@ -197,18 +214,64 @@
           <li>Navegador de escritorio actualizado: Chrome, Edge o Firefox con WebGL 2.0.</li>
           <li>4 GB de RAM y gr&aacute;ficos integrados o superiores.</li>
           <li>Teclado f&iacute;sico (no es compatible con m&oacute;viles).</li>
-          <li>Conexi&oacute;n a internet para la carga inicial (el juego pesa unos pocos MB).</li>
+          <li>Conexi&oacute;n a internet para la carga inicial.</li>
         </ul>
       </article>
       <article class="card">
         <h3>Instrucciones</h3>
         <ol>
-          <li>Espera a que termine la barra de carga.</li>
+          <li>Pulsa <b>START</b> y espera a que termine la barra de carga.</li>
           <li>Haz clic dentro del juego para darle el foco del teclado.</li>
           <li><b>&uarr;</b> para saltar rocas, <b>&darr;</b> para agacharte bajo meteoritos.</li>
           <li>Llega a 1000 puntos antes de perder tus 3 vidas.</li>
-          <li>Si no carga, recarga con Ctrl + F5 o abre el enlace en pantalla completa.</li>
+          <li>Si no carga, pulsa <b>REINICIAR</b> o recarga la p&aacute;gina con Ctrl + F5.</li>
         </ol>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 8. JUEGO 2: LABERINTO MARCIANO -->
+<section class="sec alt" id="laberinto">
+  <div class="wrap">
+    <p class="kicker">06 &middot; Juego 2</p>
+    <h2>Laberinto marciano</h2>
+    <p class="intro">El mismo astronauta, ahora atrapado en un laberinto. Recoge los <strong>36 cristales de energ&iacute;a</strong> para abrir la puerta de salida, sin que te atrapen los dos drones vigilantes que patrullan y te persiguen cuando te ven.</p>
+    <div class="juego">
+      <div class="game-bar">
+        <span class="game-name">JUEGO 2 &middot; LABERINTO</span>
+        <div class="game-btns">
+          <button class="btn btn-ghost btn-fs" type="button">Pantalla completa</button>
+          <button class="btn btn-primary btn-start" type="button">&#9654; START</button>
+        </div>
+      </div>
+      <div class="game-frame">
+        <iframe title="Mars Runner Laberinto - Unity WebGL" data-src="laberinto/index.html" allowfullscreen allow="fullscreen; autoplay"></iframe>
+        <div class="game-wait">
+          <b>&#9654;</b>
+          <p>Pulsa <strong>START</strong> para comenzar.<br>El juego se ejecuta aqu&iacute;, en esta misma p&aacute;gina.</p>
+        </div>
+      </div>
+    </div>
+    <div class="two req">
+      <article class="card">
+        <h3>Controles y reglas</h3>
+        <ul>
+          <li><b>Flechas</b> del teclado: mover al astronauta (una direcci&oacute;n a la vez).</li>
+          <li>Cada cristal suma <b>10 puntos</b>; hay <b>36</b> en total.</li>
+          <li>La <b>puerta de salida</b> se abre al recoger todos los cristales.</li>
+          <li><b>Victoria:</b> salir por la puerta abierta. <b>Derrota:</b> que un enemigo te toque.</li>
+          <li><b>R</b>: reiniciar la partida en cualquier momento.</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h3>Los enemigos</h3>
+        <ul>
+          <li>Recorren una <b>ruta fija</b> de 4 puntos esquivando las paredes (pathfinding).</li>
+          <li>Lanzan un <b>rayo de visi&oacute;n</b> hacia ti: si te ven a 8 unidades o menos, te persiguen.</li>
+          <li>Esc&oacute;ndete detr&aacute;s de una pared para que te pierdan de vista.</li>
+          <li>Haz clic dentro del juego si las flechas no responden.</li>
+        </ul>
       </article>
     </div>
   </div>
@@ -218,7 +281,7 @@
 <footer>
   <div class="wrap foot">
     <div class="brand">MARS<span>RUNNER</span></div>
-    <p>Proyecto de la asignatura Game Development &middot; Universidad Privada del Valle (UPV) &middot; Equipo Warlings &middot; Portal desarrollado por Ariel Vidal Acarapi Limachi</p>
+    <p>Proyecto de la asignatura Game Development &middot; Universidad Privada del Valle (UPV) &middot; Equipo Warlings &middot; Portal desarrollado por NOMBRE DEL DEVELOPER</p>
     <a href="#top">Volver arriba &uarr;</a>
   </div>
 </footer>
@@ -227,7 +290,6 @@
   var b=document.getElementById('burger'),m=document.getElementById('menu');
   b.addEventListener('click',function(){var o=m.classList.toggle('open');b.setAttribute('aria-expanded',o);});
   m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){m.classList.remove('open');b.setAttribute('aria-expanded',false);});});
-  document.getElementById('fs').addEventListener('click',function(){var f=document.getElementById('game');(f.requestFullscreen||f.webkitRequestFullscreen||function(){}).call(f);});
   // resaltar enlace activo
   var links=[].slice.call(document.querySelectorAll('#menu a:not(.nav-cta)'));
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(l){l.classList.toggle('on',l.getAttribute('href')==='#'+e.target.id);});}});},{rootMargin:'-45% 0px -50% 0px'});
@@ -235,6 +297,34 @@
   // aparicion suave
   var ro=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target);}});},{threshold:.12});
   document.querySelectorAll('.card,.stat,.key,figure').forEach(function(x){x.classList.add('rv');ro.observe(x);});
+
+  // CONTROL DE INICIO: cada juego se carga solo al pulsar su boton START.
+  // Al iniciar un juego, el otro se detiene para no gastar memoria.
+  var juegos=[].slice.call(document.querySelectorAll('.juego'));
+  function detenerJuego(j){
+    j.querySelector('iframe').src='about:blank';
+    j.classList.remove('activo');
+    j.querySelector('.btn-start').innerHTML='&#9654; START';
+  }
+  juegos.forEach(function(j){
+    var f=j.querySelector('iframe'),start=j.querySelector('.btn-start'),fs=j.querySelector('.btn-fs');
+    start.addEventListener('click',function(){
+      juegos.forEach(function(otro){if(otro!==j&&otro.classList.contains('activo'))detenerJuego(otro);});
+      if(j.classList.contains('activo')){f.contentWindow.location.reload();}
+      else{f.src=f.getAttribute('data-src');j.classList.add('activo');start.innerHTML='&#8635; REINICIAR';}
+    });
+    // al cargar, da el foco del teclado al juego
+    f.addEventListener('load',function(){
+      if(!j.classList.contains('activo'))return;
+      f.focus();
+      try{var c=f.contentWindow.document.getElementById('unity-canvas');if(c)c.focus();}catch(e){}
+    });
+    // pantalla completa dentro de la misma pagina (solo si el juego ya inicio)
+    fs.addEventListener('click',function(){
+      if(!j.classList.contains('activo'))return;
+      (f.requestFullscreen||f.webkitRequestFullscreen||function(){}).call(f);
+    });
+  });
 </script>
 </body>
 </html>
