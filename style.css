@@ -106,9 +106,11 @@ th{color:var(--rust);width:36%;font-weight:700}
 .bar i::after{content:"";display:block;height:100%;width:var(--w);background:repeating-linear-gradient(135deg,var(--rust) 0 10px,#e8744a 10px 20px)}
 .note{color:#5b4338;font-size:.8rem;margin-top:16px}
 
-/* jugar */
-.game-frame{aspect-ratio:16/9;background:#000;border:5px solid var(--ink);border-radius:16px;overflow:hidden;box-shadow:14px 14px 0 var(--rust)}
-.game-frame iframe{width:100%;height:100%;border:0;display:block}
+/* jugar: marco 16:9 donde el iframe ocupa todo el espacio (sin scroll interno) */
+.game-frame{position:relative;width:100%;aspect-ratio:16/9;height:auto;min-height:0;background:#000;border:5px solid var(--ink);border-radius:16px;overflow:hidden;box-shadow:14px 14px 0 var(--rust)}
+.game-frame iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;display:block;background:#000}
+.game-frame iframe:fullscreen{background:#000}
+.game-frame iframe:-webkit-full-screen{background:#000}
 .center-cta{justify-content:center;margin:42px 0 30px}
 .req{margin-top:8px}
 
@@ -152,7 +154,6 @@ nav .nav-cta2{background:#2f8f6b;margin-left:0}
 .game-name{font:700 .85rem 'Space Mono',monospace;letter-spacing:.12em;background:var(--gold);color:var(--ink);border:3px solid var(--ink);padding:6px 14px}
 .game-btns{display:flex;gap:14px;flex-wrap:wrap}
 .btn-start{font-size:1rem;padding:14px 36px}
-.game-frame{position:relative}
 .game-wait{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:16px;padding:20px;text-align:center;color:var(--paper);font-family:'Space Mono',monospace;background:radial-gradient(circle at 50% 40%,#5a2a1a,#1c1311 70%)}
 .game-wait b{display:grid;place-items:center;width:88px;height:88px;border-radius:50%;background:var(--rust);border:4px solid var(--paper);font-size:2rem;color:#fff}
 .juego.activo .game-wait{display:none}
