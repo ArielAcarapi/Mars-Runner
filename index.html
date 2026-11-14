@@ -200,7 +200,7 @@
         </div>
       </div>
       <div class="game-frame">
-        <iframe title="Mars Runner - Unity WebGL" data-src="juego/index.html" allowfullscreen allow="fullscreen; autoplay"></iframe>
+        <iframe title="Mars Runner - Unity WebGL" data-src="juego/index.html" scrolling="no" allowfullscreen allow="fullscreen; autoplay"></iframe>
         <div class="game-wait">
           <b>&#9654;</b>
           <p>Pulsa <strong>START</strong> para comenzar.<br>El juego se ejecuta aqu&iacute;, en esta misma p&aacute;gina.</p>
@@ -246,7 +246,7 @@
         </div>
       </div>
       <div class="game-frame">
-        <iframe title="Mars Runner Laberinto - Unity WebGL" data-src="laberinto/index.html" allowfullscreen allow="fullscreen; autoplay"></iframe>
+        <iframe title="Mars Runner Laberinto - Unity WebGL" data-src="laberinto/index.html" scrolling="no" allowfullscreen allow="fullscreen; autoplay"></iframe>
         <div class="game-wait">
           <b>&#9654;</b>
           <p>Pulsa <strong>START</strong> para comenzar.<br>El juego se ejecuta aqu&iacute;, en esta misma p&aacute;gina.</p>
@@ -301,6 +301,26 @@
   // CONTROL DE INICIO: cada juego se carga solo al pulsar su boton START.
   // Al iniciar un juego, el otro se detiene para no gastar memoria.
   var juegos=[].slice.call(document.querySelectorAll('.juego'));
+
+  // AJUSTE DE TAMANO: CSS que se inyecta dentro de cada juego (Unity WebGL)
+  // para que el canvas llene todo el marco, sin scroll ni recortes.
+  var CSS_JUEGO =
+    'html,body{margin:0 !important;padding:0 !important;width:100% !important;height:100% !important;overflow:hidden !important;background:#000 !important;}' +
+    '#unity-container,#unity-container.unity-desktop,#unity-container.unity-mobile{position:absolute !important;left:0 !important;top:0 !important;right:0 !important;bottom:0 !important;width:100% !important;height:100% !important;transform:none !important;}' +
+    '#unity-canvas,canvas{display:block !important;width:100% !important;height:100% !important;object-fit:contain;background:#000;}' +
+    '#unity-footer,#unity-webgl-logo,#unity-fullscreen-button,#unity-build-title{display:none !important;}';
+
+  function ajustarJuego(f){
+    try{
+      var d=f.contentDocument;
+      if(!d||!d.head||d.getElementById('ajuste-portal'))return;
+      var s=d.createElement('style');
+      s.id='ajuste-portal';
+      s.textContent=CSS_JUEGO;
+      d.head.appendChild(s);
+    }catch(e){}
+  }
+
   function detenerJuego(j){
     j.querySelector('iframe').src='about:blank';
     j.classList.remove('activo');
@@ -313,9 +333,10 @@
       if(j.classList.contains('activo')){f.contentWindow.location.reload();}
       else{f.src=f.getAttribute('data-src');j.classList.add('activo');start.innerHTML='&#8635; REINICIAR';}
     });
-    // al cargar, da el foco del teclado al juego
+    // al cargar: ajusta el tamano y da el foco del teclado al juego
     f.addEventListener('load',function(){
       if(!j.classList.contains('activo'))return;
+      ajustarJuego(f);
       f.focus();
       try{var c=f.contentWindow.document.getElementById('unity-canvas');if(c)c.focus();}catch(e){}
     });
